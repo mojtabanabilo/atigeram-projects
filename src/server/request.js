@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export const get = (url) => {
-    axios.get(url)
+export const get = async(url) => {
+    await axios.get(url)
     .then(res => console.log(res))
 }
 
-export const post = (url, data) => {
-    axios.post(url, data)
+export const post = async(url, data) => {
+    await axios.post(url, data)
     .then(res => console.log(res))
 }

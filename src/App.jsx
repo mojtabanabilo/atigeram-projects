@@ -1,19 +1,26 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import {Routes, Route} from "react-router-dom";
+
 // components
 import Main from "./components/Main";
 import ModalAddItem from "./components/ModalAddItem";
+
+// requests
+import { post } from "../src/server/request";
+
 // style
 import "./App.css";
 
 // context
 export const dataProvider = createContext();
 
-
-
 function App() {
   const [item, setItem] = useState([]);
   const [newItem, setNewItem] = useState({});
+
+  useEffect(() => {
+    post('https://jsonplaceholder.typicode.com/posts', item)
+  }, [item, newItem])
 
   return (
     <dataProvider.Provider value={{item, setItem, newItem, setNewItem}}>
