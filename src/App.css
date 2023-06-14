@@ -1,0 +1,26 @@
+@font-face {
+  font-family: yekan;
+  src: url(./assets/font/Vazir.eot),
+  url(./assets/font/Vazir.ttf),
+  url(./assets/font/Vazir.woff),
+  url(./assets/font/Vazir.woff2);
+}
+@font-face {
+  font-family: century;
+  src: url(./assets/font/CenturyGothic.eot),
+  url(./assets/font/CenturyGothic.ttf),
+  url(./assets/font/CenturyGothic.woff),
+  url(./assets/font/CenturyGothic.woff2);
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  font-family: yekan, century;
+  box-sizing: border-box;
+  .App{
+    width: 100vw;
+    height: 100vh;
+    background: #444444;
+  }
+}
