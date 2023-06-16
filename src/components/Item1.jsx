@@ -9,106 +9,86 @@ import { dataProvider } from '../App';
 
 // styled-components
 const StyledItem1 = styled.div`
-    width: 80%;
-    height: 100%;
-    border-bottom-left-radius: 10px;
-    /* padding: 20px 30px; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    direction: rtl;
-    background: #eee;
-    .label-button{
-        width: 60%;
+   width: 70%;
+   height: 100%;
+   background: red;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   .label-button{
+        width: 100%;
+        height: 15%;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background: pink;
+        padding: 20px;
         label{
-            font-size: 2rem;
-            margin-left: 10px;
+            font-size: 1.3rem;
+            font-weight: 500;
         }
         button{
+            width: 100px;
             height: 30px;
             border: none;
-            font-size: 1rem;
-            padding: 5px;
             border-radius: 5px;
-            background: #00ac00;
-            box-shadow: 3px 3px 10px gray;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            line-height: auto;
-            font-weight: bold;
+            background: #00bb00;
             color: #eee;
-            cursor: pointer;
         }
-    }
-    .item-1{
+   }
+   .price-name{
+    width: 100%;
+    height: 15%;
+    background: orange;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+   }
+   .name-items{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+    /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #727272;
+  border-radius: 10px;
+}
+    .food-name{
         width: 100%;
-        height: 100%;
+        height: 20px;
+        background: cyan;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        .price-name{
-            width: 60%;
-            height: 10%;
-            box-shadow: 0px 8px 15px gray;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-radius: 10px;
+        padding: 20px;
+        margin: 10px 0;
+        p{
+            margin-top: 16px;
         }
-        .name-items{
-            width: 60%;
-            height: 80%;
-            padding-left: 2px;
-            h4{
-                margin-top: 20px;
-            }
-            /* width */
-            ::-webkit-scrollbar {
-                width: 5px;
-            }
-
-            /* Track */
-            ::-webkit-scrollbar-track {
-                background: #eee;
-            }
-
-            /* Handle */
-            ::-webkit-scrollbar-thumb {
-                background: #b6b6b6;
-            }
-            
-            /* Handle on hover */
-            ::-webkit-scrollbar-thumb:hover {
-                background: #555;
-            }
-            .food-name{
-                width: 100%;
-                height: 80px;
-                box-shadow: 1px -1px 1px #000 inset;
-                padding: 10px;
-                border-radius: 5px;
-                margin-top: 20px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                p{
-                    font-size: 0%.7;
-                }
-                img{
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 3px;
-                }
-            }
+        img{
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
         }
     }
+   }
 `;
 
 const Item1 = () => {
@@ -119,17 +99,16 @@ const Item1 = () => {
     return (
         <StyledItem1>
             <div className='label-button'>
-                <label>منوی اول</label>
                 <button className='add-btn' onClick={() => navigator("/modaladditem")}>اضافه کردن</button>
+                <label>منوی اول</label>
             </div>
-            <div className='item-1'>
                 <div className='price-name'>
-                    <h4>ردیف</h4>
-                    <h4>نام غذا</h4>
-                    <h4>قیمت</h4>
-                    <h4>تصویر</h4>
+                    <h6>تصویر</h6>
+                    <h6>قیمت</h6>
+                    <h6>نام غذا</h6>
+                    <h6>ردیف</h6>
                 </div>
-                <div className='name-items'>
+                <div className='name-items' dir='rtl'>
                     {
                         objItem.item.length === 0 ? <h4>آیتمی برای نمایش وجود ندارد.</h4> : objItem.item.map((i, index) => <div className='food-name' key={index}>
                         <p>{index + 1}</p>
@@ -138,10 +117,7 @@ const Item1 = () => {
                         <img src={pic} alt='pic-food'/>
                     </div>)
                     }
-                    
-                    
                 </div>
-            </div>
         </StyledItem1>
     );
 };

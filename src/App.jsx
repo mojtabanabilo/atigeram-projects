@@ -25,7 +25,7 @@ function App() {
   return (
     <dataProvider.Provider value={{item, setItem, newItem, setNewItem}}>
       <div className="App">
-        <Main/>
+        {/* <Main/> */}
         <Routes>
           <Route path="/*" element={<Main />}/>
           <Route path="/modaladditem" element={<ModalAddItem />}/>

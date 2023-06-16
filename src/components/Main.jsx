@@ -8,21 +8,25 @@ import Item1 from './Item1';
 
 // styled-componets
 const StyledMain = styled.div`
+    width: 90vw;
+    height: 85vh;
+    background: #727272;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     .main{
-        width: 90vw;
-        height: 85vh;
-        border-radius: 10px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #eeeeee;
-        .main-2{
-            height: 85%;
-            display: flex;
-            border-bottom-right-radius: 10px;
-            border-bottom-left-radius: 10px;
-        }
+        width: 100%;
+        height: 80%;
+        background: green;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `; 
 
@@ -30,13 +34,11 @@ const Main = () => {
     return (
         <>  
             <StyledMain>
-                <div className='main'>
                     <Header/>
-                    <div className='main-2'>
+                    <div className='main'>
                         <Item1 />
-                        <Menu/>
+                        {/* <Menu/> */}
                     </div>
-                </div>
             </StyledMain>
         </>
     );
