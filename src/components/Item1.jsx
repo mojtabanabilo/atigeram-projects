@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
 import '../assets/icon/bootstrap-icons-1.10.5/font/bootstrap-icons.min.css';
 import pic from "../assets/pic.jpg";
 
 // context
 import { dataProvider } from '../App';
+
+// components
 
 // styled-components
 const StyledItem1 = styled.div`
@@ -87,22 +88,41 @@ const StyledItem1 = styled.div`
             height: 35px;
             border-radius: 5px;
         }
+        .edit-icons{
+            width: fit-content;
+            height: 100%;
+            background: salmon;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i{
+                font-size: 20px;
+                color: #eee;
+                line-height: 10px;
+                padding: 5px;
+                cursor: pointer;
+            }
+        }
     }
    }
 `;
 
 const Item1 = () => {
     const objItem = useContext(dataProvider);
-    
-    const navigator = useNavigate();
+    const {showModal, setShowModal} = objItem;
 
+    const deleteItem = arry => {
+        return arry.filter(i => i.name !== i.name)
+    }
+    
     return (
         <StyledItem1>
             <div className='label-button'>
-                <button className='add-btn' onClick={() => navigator("/modaladditem")}>اضافه کردن</button>
+                <button className='add-btn' onClick={() => setShowModal(!showModal)}>اضافه کردن</button>
                 <label>منوی اول</label>
             </div>
                 <div className='price-name'>
+                    <h6>ویرایش</h6>
                     <h6>تصویر</h6>
                     <h6>قیمت</h6>
                     <h6>نام غذا</h6>
@@ -111,11 +131,15 @@ const Item1 = () => {
                 <div className='name-items' dir='rtl'>
                     {
                         objItem.item.length === 0 ? <h4>آیتمی برای نمایش وجود ندارد.</h4> : objItem.item.map((i, index) => <div className='food-name' key={index}>
-                        <p>{index + 1}</p>
-                        <p>{i.newItem.name}</p>
-                        <p>{i.newItem.price}</p>
-                        <img src={pic} alt='pic-food'/>
-                    </div>)
+                            <p>{index + 1}</p>
+                            <p>{i.newItem.name}</p>
+                            <p>{i.newItem.price}</p>
+                            <img src={pic} alt='pic-food'/>
+                            <div className='edit-icons'>
+                                <i className="bi bi-pencil" style={{background: "green"}}></i>
+                                <i className="bi bi-x-lg" style={{background: "red"}} onClick={deleteItem(i)}></i>
+                            </div>
+                        </div>)
                     }
                 </div>
         </StyledItem1>

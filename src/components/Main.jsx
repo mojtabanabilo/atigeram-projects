@@ -37,7 +37,6 @@ const Main = () => {
                     <Header/>
                     <div className='main'>
                         <Item1 />
-                        {/* <Menu/> */}
                     </div>
             </StyledMain>
         </>

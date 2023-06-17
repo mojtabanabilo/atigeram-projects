@@ -1,5 +1,4 @@
 import { useEffect, useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -56,20 +55,20 @@ const StyledInputs = styled.div`
 
 function ModalAddItem() {
     const objItem = useContext(dataProvider);
-    const {newItem, setNewItem, item, setItem} = objItem;
+    const {newItem, setNewItem, item, setItem, setShowModal} = objItem;
     const [image, setImage] = useState(null);
     console.log(objItem);
     
-    useEffect(() => {
-        window.onbeforeunload = () => {
-            return "Dude, are you sure you want to leave? Think of the kittens!";
-        };
-    }, [])
+    // useEffect(() => {
+    //     window.onbeforeunload = () => {
+    //         return "Dude, are you sure you want to leave? Think of the kittens!";
+    //     };
+    // }, [])
 
   return (
     <div
       className="modal show"
-      style={{ display: 'block', position: 'initial', direction: "rtl"}}
+      style={{ display: 'block', position: 'absolute', direction: "rtl"}}
     >
       <Modal.Dialog>
         <Modal.Header>
@@ -114,9 +113,7 @@ function ModalAddItem() {
         </Modal.Body>
 
         <Modal.Footer>
-            <Link to="/">
-                <Button variant="secondary">لغو</Button>
-            </Link>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>لغو</Button>
           <Button variant="primary" onClick={() => {
             newItem && setItem(prev => [...prev,{newItem}])
           }}>ذخیره</Button>

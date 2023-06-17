@@ -17,21 +17,28 @@ export const dataProvider = createContext();
 function App() {
   const [item, setItem] = useState([]);
   const [newItem, setNewItem] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  console.log(showModal);
 
-  useEffect(() => {
-    post('https://jsonplaceholder.typicode.com/posts', item)
-  }, [item, newItem])
+
+  // useEffect(() => {
+  //   post('https://jsonplaceholder.typicode.com/posts', item)
+  // }, [item, newItem])
 
   return (
-    <dataProvider.Provider value={{item, setItem, newItem, setNewItem}}>
-      <div className="App">
-        {/* <Main/> */}
-        <Routes>
-          <Route path="/*" element={<Main />}/>
-          <Route path="/modaladditem" element={<ModalAddItem />}/>
-        </Routes>
-      </div>
-    </dataProvider.Provider>
+    <>
+      <dataProvider.Provider value={{item, setItem, newItem, setNewItem, showModal, setShowModal}}>
+        <div className="App">
+          {
+            showModal && <ModalAddItem />
+          }
+          <Routes>
+            <Route path="/*" element={<Main />}/>
+            <Route path="/modaladditem" element={<ModalAddItem />}/>
+          </Routes>
+        </div>
+      </dataProvider.Provider>
+    </>
   );
 }
 
