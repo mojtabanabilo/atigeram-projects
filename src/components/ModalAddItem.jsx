@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -57,13 +57,6 @@ function ModalAddItem() {
     const objItem = useContext(dataProvider);
     const {newItem, setNewItem, item, setItem, setShowModal} = objItem;
     const [image, setImage] = useState(null);
-    console.log(objItem);
-    
-    // useEffect(() => {
-    //     window.onbeforeunload = () => {
-    //         return "Dude, are you sure you want to leave? Think of the kittens!";
-    //     };
-    // }, [])
 
   return (
     <div
@@ -115,6 +108,7 @@ function ModalAddItem() {
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>لغو</Button>
           <Button variant="primary" onClick={() => {
+            setNewItem({...newItem, id: item.length + 1});
             newItem && setItem(prev => [...prev,{newItem}])
           }}>ذخیره</Button>
         </Modal.Footer>

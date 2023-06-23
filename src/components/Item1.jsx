@@ -109,12 +109,14 @@ const StyledItem1 = styled.div`
 
 const Item1 = () => {
     const objItem = useContext(dataProvider);
-    const {showModal, setShowModal} = objItem;
+    const { item } = objItem
+    const { showModal, setShowModal } = objItem;
+    console.log(item);
 
-    const deleteItem = arry => {
-        return arry.filter(i => i.name !== i.name)
+    const removeItemFromArray = (array, id) => {
+        array.filter((item) => item.id !== id);
     }
-    
+
     return (
         <StyledItem1>
             <div className='label-button'>
@@ -130,14 +132,14 @@ const Item1 = () => {
                 </div>
                 <div className='name-items' dir='rtl'>
                     {
-                        objItem.item.length === 0 ? <h4>آیتمی برای نمایش وجود ندارد.</h4> : objItem.item.map((i, index) => <div className='food-name' key={index}>
+                        item.length === 0 ? <h4>آیتمی برای نمایش وجود ندارد.</h4> : item.map((i, index) => <div className='food-name' key={index}>
                             <p>{index + 1}</p>
                             <p>{i.newItem.name}</p>
                             <p>{i.newItem.price}</p>
                             <img src={pic} alt='pic-food'/>
                             <div className='edit-icons'>
                                 <i className="bi bi-pencil" style={{background: "green"}}></i>
-                                <i className="bi bi-x-lg" style={{background: "red"}} onClick={deleteItem(i)}></i>
+                                <i className="bi bi-x-lg" style={{background: "red"}} onClick={removeItemFromArray(item, i.id)}></i>
                             </div>
                         </div>)
                     }
@@ -146,4 +148,4 @@ const Item1 = () => {
     );
 };
 
-export default Item1;
+export default React.memo(Item1);

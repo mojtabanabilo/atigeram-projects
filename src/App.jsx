@@ -18,12 +18,10 @@ function App() {
   const [item, setItem] = useState([]);
   const [newItem, setNewItem] = useState({});
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
-
 
   // useEffect(() => {
   //   post('https://jsonplaceholder.typicode.com/posts', item)
-  // }, [item, newItem])
+  // }, [item])
 
   return (
     <>
