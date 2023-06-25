@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from "styled-components";
 import '../assets/icon/bootstrap-icons-1.10.5/font/bootstrap-icons.min.css';
 import pic from "../assets/pic.jpg";
 
 // context
 import { dataProvider } from '../App';
-
-// components
 
 // styled-components
 const StyledItem1 = styled.div`
@@ -109,11 +107,11 @@ const StyledItem1 = styled.div`
 
 const Item1 = () => {
     const objItem = useContext(dataProvider);
-    const { showModal, setShowModal, item } = objItem;
-    console.log(item);
+    const { showModal, setShowModal, item, setItem, edit, setEdit } = objItem;
 
     const removeItemFromArray = (array, id) => {
-        
+        const remove = array.filter(item => item.newItem.id !== id);
+        setItem(remove);
     }
 
     return (
@@ -137,8 +135,8 @@ const Item1 = () => {
                             <p>{i.newItem.price}</p>
                             <img src={pic} alt='pic-food'/>
                             <div className='edit-icons'>
-                                <i className="bi bi-pencil" style={{background: "green"}}></i>
-                                <i className="bi bi-x-lg" style={{background: "red"}}></i>
+                                <i className="bi bi-pencil" style={{background: "green"}} onClick={() => setEdit(!edit)}></i>
+                                <i className="bi bi-x-lg" style={{background: "red"}} onClick={() => removeItemFromArray(item, i.newItem.id)}></i>
                             </div>
                         </div>)
                     }
@@ -147,4 +145,4 @@ const Item1 = () => {
     );
 };
 
-export default React.memo(Item1);
+export default Item1;
