@@ -16,7 +16,7 @@ export const dataProvider = createContext();
 
 function App() {
   const [item, setItem] = useState([]);
-  const [newItem, setNewItem] = useState({});
+  const [newItem, setNewItem] = useState({id: 0});
   const [showModal, setShowModal] = useState(false);
 
   // useEffect(() => {

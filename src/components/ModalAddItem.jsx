@@ -100,7 +100,6 @@ function ModalAddItem() {
                         />
                     </div>
                 }
-                
             </div>
           </StyledInputs>
         </Modal.Body>

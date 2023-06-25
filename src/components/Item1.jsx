@@ -109,12 +109,11 @@ const StyledItem1 = styled.div`
 
 const Item1 = () => {
     const objItem = useContext(dataProvider);
-    const { item } = objItem
-    const { showModal, setShowModal } = objItem;
+    const { showModal, setShowModal, item } = objItem;
     console.log(item);
 
     const removeItemFromArray = (array, id) => {
-        array.filter((item) => item.id !== id);
+        
     }
 
     return (
@@ -139,7 +138,7 @@ const Item1 = () => {
                             <img src={pic} alt='pic-food'/>
                             <div className='edit-icons'>
                                 <i className="bi bi-pencil" style={{background: "green"}}></i>
-                                <i className="bi bi-x-lg" style={{background: "red"}} onClick={removeItemFromArray(item, i.id)}></i>
+                                <i className="bi bi-x-lg" style={{background: "red"}}></i>
                             </div>
                         </div>)
                     }
