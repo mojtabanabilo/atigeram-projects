@@ -6,7 +6,7 @@ import { dataProvider } from '../App';
 
 // styled-components
 const StyledInputs = styled.div`
-    width: 100%;
+  width: 100%;
     div{
         display: flex;
         justify-content: flex-start;
@@ -23,7 +23,6 @@ const StyledInputs = styled.div`
                 outline: none;
             }
         }
-
     }
     .upload-image{
         display: flex;
@@ -48,12 +47,25 @@ const StyledInputs = styled.div`
             padding-right: 10px;
         }
     }
+
 `;
 
-function ModalEditItem() {
+function ModalEditItem({edit, setEdit, ary, handleChange}) {
   const objItem = useContext(dataProvider);
-  const {newItem, setNewItem, item, setItem, setShowModal, edit, setEdit} = objItem;
-const [image, setImage] = useState(null);
+  const {item, setItem, newItem, setNewItem} = objItem;
+  const [image, setImage] = useState(null);
+
+  const editItemFromArray = (id, nameAtr, value) => {
+    const editAnItem = item.map(item => {
+        if(item.id === id){
+          console.log("yes");
+        } else {
+          console.log("no");
+        }
+    })
+    console.log(editAnItem);
+    setEdit(false)
+  }
 
   return (
     <>
@@ -71,11 +83,11 @@ const [image, setImage] = useState(null);
           <StyledInputs>
             <div>
                 <label>نام آیتم:</label>
-                <input name="name" type="text" className="inpt-txt" onChange={e => setNewItem({...newItem, [e.target.name] : e.target.value})}/>
+                <input name="name" type="text" className="inpt-txt" onChange={e => console.log("you are writing")}/>
             </div>
             <div>
                 <label>قیمت:</label>
-                <input name="price" type="text" className="inpt-txt" onChange={e => setNewItem({...newItem, [e.target.name] : e.target.value})}/>
+                <input name="price" type="text" className="inpt-txt" onChange={e => console.log("you are writing")}/>
             </div>
             <div className="upload-image">
                 <label>عکس:</label>
@@ -106,7 +118,7 @@ const [image, setImage] = useState(null);
           <Button variant="secondary" onClick={() => setEdit(false)}>
             بستن
           </Button>
-          <Button variant="primary">اعمال</Button>
+          <Button variant="primary" onClick={() => console.log("done")}>اعمال</Button>
         </Modal.Footer>
       </Modal>
     </>

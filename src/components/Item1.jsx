@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import styled from "styled-components";
 import '../assets/icon/bootstrap-icons-1.10.5/font/bootstrap-icons.min.css';
 import pic from "../assets/pic.jpg";
+import ModalEditItem from "./ModalEditItem";
 
 // context
 import { dataProvider } from '../App';
@@ -107,15 +108,24 @@ const StyledItem1 = styled.div`
 
 const Item1 = () => {
     const objItem = useContext(dataProvider);
-    const { showModal, setShowModal, item, setItem, edit, setEdit } = objItem;
+    const { showModal, setShowModal, item, setItem, newItem } = objItem;
+    const [edit, setEdit] = useState(false);
 
     const removeItemFromArray = (array, id) => {
         const remove = array.filter(item => item.newItem.id !== id);
         setItem(remove);
     }
+    const handleChange = (ary, id) => {
+        const changeItemIndex = ary.findIndex(i => i.newItem.id === id)
+        console.log(changeItemIndex);
+        setEdit(true)
+    };
 
     return (
         <StyledItem1>
+            {
+                edit && <ModalEditItem  edit={edit} setEdit={setEdit} ary={item} handleChange={handleChange}/>
+            }
             <div className='label-button'>
                 <button className='add-btn' onClick={() => setShowModal(!showModal)}>اضافه کردن</button>
                 <label>منوی اول</label>
@@ -129,13 +139,13 @@ const Item1 = () => {
                 </div>
                 <div className='name-items' dir='rtl'>
                     {
-                        item.length === 0 ? <h4>آیتمی برای نمایش وجود ندارد.</h4> : item.map((i, index) => <div className='food-name' key={index}>
+                        item.length === 0  ? <h4>آیتمی برای نمایش وجود ندارد.</h4> : item.map((i, index) => <div className='food-name' key={index}>
                             <p>{index + 1}</p>
                             <p>{i.newItem.name}</p>
                             <p>{i.newItem.price}</p>
                             <img src={pic} alt='pic-food'/>
                             <div className='edit-icons'>
-                                <i className="bi bi-pencil" style={{background: "green"}} onClick={() => setEdit(!edit)}></i>
+                                <i className="bi bi-pencil" style={{background: "green"}} onClick={() => handleChange(item, i.newItem.id)}></i>
                                 <i className="bi bi-x-lg" style={{background: "red"}} onClick={() => removeItemFromArray(item, i.newItem.id)}></i>
                             </div>
                         </div>)

@@ -4,7 +4,6 @@ import {Routes, Route} from "react-router-dom";
 // components
 import Main from "./components/Main";
 import ModalAddItem from "./components/ModalAddItem";
-import ModalEditItem from "./components/ModalEditItem";
 
 // requests
 import { post } from "../src/server/request";
@@ -19,7 +18,6 @@ function App() {
   const [item, setItem] = useState([]);
   const [newItem, setNewItem] = useState({id: 0});
   const [showModal, setShowModal] = useState(false);
-  const [edit, setEdit] = useState(false);
 
   // useEffect(() => {
   //   post('https://jsonplaceholder.typicode.com/posts', item)
@@ -27,13 +25,10 @@ function App() {
 
   return (
     <>
-      <dataProvider.Provider value={{item, setItem, newItem, setNewItem, showModal, setShowModal, edit, setEdit}}>
+      <dataProvider.Provider value={{item, setItem, newItem, setNewItem, showModal, setShowModal}}>
         <div className="App">
           {
             showModal && <ModalAddItem />
-          }
-          {
-            edit && <ModalEditItem />
           }
           <Routes>
             <Route path="/*" element={<Main />}/>
