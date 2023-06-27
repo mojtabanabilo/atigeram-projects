@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { dataProvider } from '../App';
+import { Link, useParams } from 'react-router-dom';
 
 // styled-components
 const StyledInputs = styled.div`
@@ -50,78 +51,69 @@ const StyledInputs = styled.div`
 
 `;
 
-function ModalEditItem({edit, setEdit, ary, handleChange}) {
+function ModalEditItem() {
   const objItem = useContext(dataProvider);
   const {item, setItem, newItem, setNewItem} = objItem;
   const [image, setImage] = useState(null);
-
-  const editItemFromArray = (id, nameAtr, value) => {
-    const editAnItem = item.map(item => {
-        if(item.id === id){
-          console.log("yes");
-        } else {
-          console.log("no");
-        }
-    })
-    console.log(editAnItem);
-    setEdit(false)
-  }
+  const params = useParams();
+  const editAnItem = item[params.id]
+  console.log(editAnItem);
 
   return (
-    <>
-      <Modal
-        show={edit}
-        onHide={() => setEdit(false)}
-        backdrop="static"
-        keyboard={false}
-        style={{direction: "rtl"}}
-      >
+    <div
+      className="modal show"
+      style={{ display: 'block', position: 'absolute', direction: "rtl"}}
+    >
+        <Modal.Dialog>
         <Modal.Header>
-          <Modal.Title>لطفا مقادیر را تغییر دهید</Modal.Title>
+          <Modal.Title>اعمال تغییرات</Modal.Title>
         </Modal.Header>
+
         <Modal.Body>
           <StyledInputs>
+
             <div>
-                <label>نام آیتم:</label>
-                <input name="name" type="text" className="inpt-txt" onChange={e => console.log("you are writing")}/>
-            </div>
-            <div>
-                <label>قیمت:</label>
-                <input name="price" type="text" className="inpt-txt" onChange={e => console.log("you are writing")}/>
-            </div>
-            <div className="upload-image">
-                <label>عکس:</label>
-                {
-                    image ? <div className="image-remove">
-                        <img src={image} alt="food-image"/>
-                        <i className="bi bi-trash" onClick={() => setImage(null)}></i>
-                    </div> : <div className="upload-btn">
-                        <label htmlFor="input-file" style={{cursor: "pointer"}}>
-                            بارگذاری عکس
-                        </label>
-                        <input 
-                            type="file"
-                            id="input-file" 
-                            style={{display: "none"}}
-                            name="image"
-                            onChange={e => {
-                                setImage(URL.createObjectURL(e.target.files[0]));
-                                setNewItem({...newItem, [e.target.name] : e.target.value});
-                            }}
-                        />
-                    </div>
-                }
-            </div>
+                    <label>نام آیتم:</label>
+                    <input name="name" type="text" className="inpt-txt" onChange={e => console.log("you are writing")}/>
+                </div>
+                <div>
+                    <label>قیمت:</label>
+                    <input name="price" type="text" className="inpt-txt" onChange={e => console.log("you are writing")}/>
+                </div>
+                <div className="upload-image">
+                    <label>عکس:</label>
+                    {
+                        image ? <div className="image-remove">
+                            <img src={image} alt="food-image"/>
+                            <i className="bi bi-trash" onClick={() => setImage(null)}></i>
+                        </div> : <div className="upload-btn">
+                            <label htmlFor="input-file" style={{cursor: "pointer"}}>
+                                بارگذاری عکس
+                            </label>
+                            <input 
+                                type="file"
+                                id="input-file" 
+                                style={{display: "none"}}
+                                name="image"
+                                onChange={e => {
+                                    setImage(URL.createObjectURL(e.target.files[0]));
+                                    setNewItem({...newItem, [e.target.name] : e.target.value});
+                                }}
+                            />
+                        </div>
+                    }
+                </div>
           </StyledInputs>
         </Modal.Body>
+
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setEdit(false)}>
-            بستن
-          </Button>
-          <Button variant="primary" onClick={() => console.log("done")}>اعمال</Button>
+          <Link to="/">
+            <Button variant="secondary">بستن</Button>
+          </Link>
+          <Button variant="primary">اعمال تغییرات</Button>
         </Modal.Footer>
-      </Modal>
-    </>
+      </Modal.Dialog>
+      </div>
   );
 }
 

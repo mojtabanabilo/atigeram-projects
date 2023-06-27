@@ -1,7 +1,11 @@
 import React, { useContext, useState } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
 import styled from "styled-components";
 import '../assets/icon/bootstrap-icons-1.10.5/font/bootstrap-icons.min.css';
 import pic from "../assets/pic.jpg";
+
+
+// components
 import ModalEditItem from "./ModalEditItem";
 
 // context
@@ -118,14 +122,16 @@ const Item1 = () => {
     const handleChange = (ary, id) => {
         const changeItemIndex = ary.findIndex(i => i.newItem.id === id)
         console.log(changeItemIndex);
-        setEdit(true)
     };
 
     return (
         <StyledItem1>
-            {
+            <Routes>
+                <Route path='/item/:id' element={<ModalEditItem />}/>
+            </Routes>
+            {/* {
                 edit && <ModalEditItem  edit={edit} setEdit={setEdit} ary={item} handleChange={handleChange}/>
-            }
+            } */}
             <div className='label-button'>
                 <button className='add-btn' onClick={() => setShowModal(!showModal)}>اضافه کردن</button>
                 <label>منوی اول</label>
@@ -145,7 +151,12 @@ const Item1 = () => {
                             <p>{i.newItem.price}</p>
                             <img src={pic} alt='pic-food'/>
                             <div className='edit-icons'>
-                                <i className="bi bi-pencil" style={{background: "green"}} onClick={() => handleChange(item, i.newItem.id)}></i>
+                                <Link to={`/item/${i.newItem.id}`}>
+                                    <i className="bi bi-pencil" style={{background: "green"}} onClick={() => {
+                                            handleChange(item, i.newItem.id)
+                                        }
+                                    }></i>
+                                </Link>
                                 <i className="bi bi-x-lg" style={{background: "red"}} onClick={() => removeItemFromArray(item, i.newItem.id)}></i>
                             </div>
                         </div>)
