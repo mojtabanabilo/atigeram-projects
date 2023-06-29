@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import styled from "styled-components";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -52,12 +52,16 @@ const StyledInputs = styled.div`
 `;
 
 function ModalEditItem() {
-  const objItem = useContext(dataProvider);
-  const {item, setItem, newItem, setNewItem} = objItem;
+  const {item, newItem, setNewItem} = useContext(dataProvider);
   const [image, setImage] = useState(null);
+  const [uniqueItem, setUniqueItem] = useState(null)
   const params = useParams();
-  const editAnItem = item[params.id]
-  console.log(editAnItem);
+
+  useEffect(() => {
+    setUniqueItem(item[params.id].newItem)
+  }, [])
+  
+  console.log(uniqueItem);
 
   return (
     <div
@@ -70,45 +74,48 @@ function ModalEditItem() {
         </Modal.Header>
 
         <Modal.Body>
-          <StyledInputs>
-
+          
+          {
+            uniqueItem ? <StyledInputs>
             <div>
-                    <label>نام آیتم:</label>
-                    <input name="name" type="text" className="inpt-txt" onChange={e => console.log("you are writing")}/>
-                </div>
-                <div>
-                    <label>قیمت:</label>
-                    <input name="price" type="text" className="inpt-txt" onChange={e => console.log("you are writing")}/>
-                </div>
-                <div className="upload-image">
-                    <label>عکس:</label>
-                    {
-                        image ? <div className="image-remove">
-                            <img src={image} alt="food-image"/>
-                            <i className="bi bi-trash" onClick={() => setImage(null)}></i>
-                        </div> : <div className="upload-btn">
-                            <label htmlFor="input-file" style={{cursor: "pointer"}}>
-                                بارگذاری عکس
-                            </label>
-                            <input 
-                                type="file"
-                                id="input-file" 
-                                style={{display: "none"}}
-                                name="image"
-                                onChange={e => {
-                                    setImage(URL.createObjectURL(e.target.files[0]));
-                                    setNewItem({...newItem, [e.target.name] : e.target.value});
-                                }}
-                            />
-                        </div>
-                    }
-                </div>
-          </StyledInputs>
+            <label>نام آیتم:</label>
+            <input name="name" type="text" className="inpt-txt"  onChange={e => setUniqueItem(prev => ({...prev ,[e.target.name]: e.target.value}))}/>
+        </div>
+        <div>
+            <label>قیمت:</label>
+            <input name="price" type="text" className="inpt-txt"  onChange={e => setUniqueItem(prev => ({...prev ,[e.target.name]: e.target.value}))}/>
+        </div>
+        <div className="upload-image">
+            <label>عکس:</label>
+            {
+                image ? <div className="image-remove">
+                    <img src={image} alt="food-image"/>
+                    <i className="bi bi-trash" onClick={() => setImage(null)}></i>
+                </div> : <div className="upload-btn">
+                    <label htmlFor="input-file" style={{cursor: "pointer"}}>
+                        بارگذاری عکس
+                    </label>
+                    <input 
+                        type="file"
+                        id="input-file" 
+                        style={{display: "none"}}
+                        name="image"
+                        onChange={e => {
+                            setImage(URL.createObjectURL(e.target.files[0]));
+                            setNewItem({...newItem, [e.target.name] : e.target.value});
+                        }}
+                    />
+                </div> 
+            }
+        </div>
+  </StyledInputs> : <h1>آیتمی وجود ندارد</h1>
+}
+            
         </Modal.Body>
 
         <Modal.Footer>
           <Link to="/">
-            <Button variant="secondary">بستن</Button>
+            <Button variant="secondary" onClick={() => setUniqueItem(null)}>بستن</Button>
           </Link>
           <Button variant="primary">اعمال تغییرات</Button>
         </Modal.Footer>
