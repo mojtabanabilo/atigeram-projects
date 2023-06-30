@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { dataProvider } from '../App';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 // styled-components
 const StyledInputs = styled.div`
@@ -52,14 +52,17 @@ const StyledInputs = styled.div`
 `;
 
 function ModalEditItem() {
-  const {item, newItem, setNewItem} = useContext(dataProvider);
+  const {item, setItem, newItem, setNewItem} = useContext(dataProvider);
   const [image, setImage] = useState(null);
   const [uniqueItem, setUniqueItem] = useState(null)
   const params = useParams();
+  const navigation = useNavigate();
+  console.log(item);
+
 
   useEffect(() => {
-    setUniqueItem(item[params.id].newItem)
-  }, [])
+    setUniqueItem(item[params.id])
+  }, [item, newItem])
   
   console.log(uniqueItem);
 
@@ -114,10 +117,14 @@ function ModalEditItem() {
         </Modal.Body>
 
         <Modal.Footer>
-          <Link to="/">
-            <Button variant="secondary" onClick={() => setUniqueItem(null)}>بستن</Button>
-          </Link>
-          <Button variant="primary">اعمال تغییرات</Button>
+          <Button variant="secondary" onClick={() => {
+            setUniqueItem(null)
+            navigation('/', {replace: true})
+          }}>بستن</Button>
+          <Button variant="primary" onClick={() => {
+              item[params.id] = uniqueItem
+              console.log(item);
+            }}>اعمال تغییرات</Button>
         </Modal.Footer>
       </Modal.Dialog>
       </div>

@@ -108,7 +108,7 @@ function ModalAddItem() {
           <Button variant="secondary" onClick={() => setShowModal(false)}>لغو</Button>
           <Button variant="primary" onClick={() => {
             setNewItem({...newItem, id: item.length + 1});
-            newItem && setItem(prev => [...prev,{newItem}])
+            newItem && setItem(prev => [...prev, newItem]);
           }}>ذخیره</Button>
         </Modal.Footer>
       </Modal.Dialog>

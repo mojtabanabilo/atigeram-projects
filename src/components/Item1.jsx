@@ -112,15 +112,15 @@ const StyledItem1 = styled.div`
 
 const Item1 = () => {
     const objItem = useContext(dataProvider);
-    const { showModal, setShowModal, item, setItem, newItem } = objItem;
-    const [edit, setEdit] = useState(false);
+    const { showModal, setShowModal, item, setItem, newItem, setNewItem } = objItem;
+    console.log(item);
 
     const removeItemFromArray = (array, id) => {
-        const remove = array.filter(item => item.newItem.id !== id);
+        const remove = array.filter(item => item.id !== id);
         setItem(remove);
     }
     const handleChange = (ary, id) => {
-        const changeItemIndex = ary.findIndex(i => i.newItem.id === id)
+        const changeItemIndex = ary.findIndex(i => i.id === id)
         console.log(changeItemIndex);
     };
 
@@ -129,9 +129,6 @@ const Item1 = () => {
             <Routes>
                 <Route path='/item/:id' element={<ModalEditItem />}/>
             </Routes>
-            {/* {
-                edit && <ModalEditItem  edit={edit} setEdit={setEdit} ary={item} handleChange={handleChange}/>
-            } */}
             <div className='label-button'>
                 <button className='add-btn' onClick={() => setShowModal(!showModal)}>اضافه کردن</button>
                 <label>منوی اول</label>
@@ -147,17 +144,17 @@ const Item1 = () => {
                     {
                         item.length === 0  ? <h4>آیتمی برای نمایش وجود ندارد.</h4> : item.map((i, index) => <div className='food-name' key={index}>
                             <p>{index + 1}</p>
-                            <p>{i.newItem.name}</p>
-                            <p>{i.newItem.price}</p>
+                            <p>{i.name}</p>
+                            <p>{i.price}</p>
                             <img src={pic} alt='pic-food'/>
                             <div className='edit-icons'>
-                                <Link to={`/item/${i.newItem.id}`}>
+                                <Link to={`/item/${i.id}`}>
                                     <i className="bi bi-pencil" style={{background: "green"}} onClick={() => {
-                                            handleChange(item, i.newItem.id)
+                                            handleChange(item, i.id)
                                         }
                                     }></i>
                                 </Link>
-                                <i className="bi bi-x-lg" style={{background: "red"}} onClick={() => removeItemFromArray(item, i.newItem.id)}></i>
+                                <i className="bi bi-x-lg" style={{background: "red"}} onClick={() => removeItemFromArray(item, i.id)}></i>
                             </div>
                         </div>)
                     }
