@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import styled from "styled-components";
 import '../assets/icon/bootstrap-icons-1.10.5/font/bootstrap-icons.min.css';
 import pic from "../assets/pic.jpg";
-
 
 // components
 import ModalEditItem from "./ModalEditItem";
@@ -115,13 +114,13 @@ const Item1 = () => {
     const { showModal, setShowModal, item, setItem, newItem, setNewItem } = objItem;
     console.log(item);
 
-    const removeItemFromArray = (array, id) => {
-        const remove = array.filter(item => item.id !== id);
-        setItem(remove);
+    const removeItemFromArray = (array, index) => {
+        const remove = array.filter(item => item.id !== index);
+        setItem(remove.filter((_, i) => i !== index).map((obj, i) => ({...obj, id: i})))
+        
     }
-    const handleChange = (ary, id) => {
-        const changeItemIndex = ary.findIndex(i => i.id === id)
-        console.log(changeItemIndex);
+    const handleChange = (ary, index) => {
+        const changeItemIndex = ary.findIndex(i => i.id === index)
     };
 
     return (
@@ -150,11 +149,12 @@ const Item1 = () => {
                             <div className='edit-icons'>
                                 <Link to={`/item/${i.id}`}>
                                     <i className="bi bi-pencil" style={{background: "green"}} onClick={() => {
-                                            handleChange(item, i.id)
-                                        }
-                                    }></i>
+                                        handleChange(item, i.id)
+                                    }}></i>
                                 </Link>
-                                <i className="bi bi-x-lg" style={{background: "red"}} onClick={() => removeItemFromArray(item, i.id)}></i>
+                                <i className="bi bi-x-lg" style={{background: "red"}} onClick={() => {
+                                    removeItemFromArray(item, i.id)
+                                }}></i>
                             </div>
                         </div>)
                     }
