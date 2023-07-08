@@ -87,7 +87,7 @@ function ModalEditItem() {
         <div>
             <label>قیمت:</label>
             <input name="price" type="text" className="inpt-txt"  onChange={e => setUniqueItem(prev => ({...prev ,[e.target.name]: e.target.value}))}/>
-        </div>
+        </div>  
         <div className="upload-image">
             <label>عکس:</label>
             {

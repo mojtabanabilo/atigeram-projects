@@ -116,8 +116,7 @@ const Item1 = () => {
 
     const removeItemFromArray = (array, index) => {
         const remove = array.filter(item => item.id !== index);
-        setItem(remove.filter((_, i) => i !== index).map((obj, i) => ({...obj, id: i})))
-        
+        setItem(remove)        
     }
     const handleChange = (ary, index) => {
         const changeItemIndex = ary.findIndex(i => i.id === index)
@@ -147,7 +146,7 @@ const Item1 = () => {
                             <p>{i.price}</p>
                             <img src={pic} alt='pic-food'/>
                             <div className='edit-icons'>
-                                <Link to={`/item/${i.id}`}>
+                                <Link to={`/item/${index}`}>
                                     <i className="bi bi-pencil" style={{background: "green"}} onClick={() => {
                                         handleChange(item, i.id)
                                     }}></i>
