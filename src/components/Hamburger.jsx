@@ -1,14 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
-
-// styled-components
-const A = styled.a`
-    list-style-type: none;
-    text-decoration: none;
-`;
 
 const Hamburger = ({menu}) => {
     const {setShowMenu} = menu;
