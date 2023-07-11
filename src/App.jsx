@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import "./App.css";
-import Header from "./components/Header";
-import Hamburger from "./components/Hamburger";
 import { Route, Routes } from "react-router-dom";
+import Hamburger from "./components/Hamburger";
+import Header from "./components/Header";
 import Home from "./components/Home";
 import FastFood from "./components/FastFood";
 import Drink from "./components/Drink";
 import AboutUs from "./components/AboutUs";
+import "./App.css";
 
 
 function App() {

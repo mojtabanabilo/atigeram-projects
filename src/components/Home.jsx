@@ -1,10 +1,17 @@
 import React from 'react';
-import resturant from "../assets/logores2.png"
+import resturant from "../assets/logores2.png";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Home = () => {
+    AOS.init();
     return (
         <div className='w-100 h-100 d-flex flex-column justify-content-center align-items-center'>
-            <div className='my-4 bg-white mt-5 rounded-2 w-75 shadow d-flex flex-row justify-content-start align-items-center p-4'>
+            <div 
+                className='my-4 bg-white mt-5 rounded-2 w-75 shadow d-flex flex-row justify-content-start align-items-center p-4'
+                data-aos="fade-left"
+                data-aos-delay="250"
+            >
                 <img 
                     src={resturant} 
                     alt="logo"
@@ -13,8 +20,13 @@ const Home = () => {
                 />
                 <span className='text-dark-emphasis mx-3 align-middle fw-bolder fs-3'>Resturant</span>
             </div>
-            <div style={{textAlign: "justify"}} className='bg-white rounded-2 w-75 shadow d-flex justify-content-start align-items-center p-4'>
-                <p className='lh-sm text-center'>
+            <div 
+                style={{textAlign: "justify"}} 
+                className='bg-white rounded-2 w-75 shadow d-flex justify-content-start align-items-center p-4'
+                data-aos="fade-right"
+                data-aos-delay="250"
+            >
+                <p className='lh-sm'>
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias, ab placeat est 
                     molestiae fugiat perferendis sit non assumenda facere accusamus iusto dolorem 
                     architecto nesciunt consectetur obcaecati qui! Ab, molestiae magni. 
