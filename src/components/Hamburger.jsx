@@ -6,7 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const Hamburger = ({menu}) => {
     const {setShowMenu} = menu;
     return (
-        <div className='w-25 vh-100 bg-primary bg-gradient p-3 position-absolute top-0 end-0'>
+        <div className='w-50 vh-100 bg-primary bg-gradient p-3 position-absolute top-0 end-0'>
             <i className="bi bi-x fs-1 text-light"
                 style={{cursor: "pointer"}}
                 onClick={() => setShowMenu(false)}
