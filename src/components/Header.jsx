@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { Link } from 'react-router-dom';
 
 // styled-components
 const UL = styled.ul`
@@ -13,22 +14,17 @@ const UL = styled.ul`
     li{
         margin: 0 10px;
         list-style-type: none;
-        color: #fff;
         cursor: pointer;
+        a{
+            text-decoration: none;
+            color: #fff;
+        }
     }
 `;
 
-const Header = ({menu}) => {
+const Header = ({menu, size}) => {
     const {showMenu, setShowMenu} = menu;
-    const [width, setWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResizeWindow = () => setWidth(window.innerWidth);
-        window.addEventListener("resize", handleResizeWindow);
-        return () => {
-           window.removeEventListener("resize", handleResizeWindow);
-        };
-    }, []);
+    const {width} = size;
        
     return (
         <Navbar bg="primary" data-bs-theme="dark" className='p-3 d-flex justify-content-between align-items-center'>
@@ -38,10 +34,10 @@ const Header = ({menu}) => {
                     style={{cursor: "pointer"}}
                     onClick={() => setShowMenu(!showMenu)} 
                 ></i> : <UL>
-                    <li>home</li>
-                    <li>fast food</li>
-                    <li>drink</li>
-                    <li>about us</li>
+                    <li><Link to="/">home</Link></li>
+                    <li><Link to="/fastfood">fast food</Link></li>
+                    <li><Link to="/drink">drink</Link></li>
+                    <li><Link to="/aboutus">about us</Link></li>
                </UL>
             }
         </Navbar>
