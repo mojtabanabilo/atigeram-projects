@@ -20,6 +20,7 @@ function App() {
          window.removeEventListener("resize", handleResizeWindow);
       };
   }, []);
+  
   return (
     <div className="min-vw-100 min-vh-100">
       <Header menu={{showMenu, setShowMenu}} size={{width, setWidth}}/>
