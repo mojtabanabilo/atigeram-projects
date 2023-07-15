@@ -10,7 +10,7 @@ const Home = () => {
             <div 
                 className='my-4 bg-white mt-5 rounded-2 w-75 shadow d-flex flex-row justify-content-start align-items-center p-4'
                 data-aos="fade-left"
-                data-aos-delay="250"
+                data-aos-delay="150"
             >
                 <img 
                     src={resturant} 

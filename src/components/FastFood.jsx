@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 // styled-components
 const ADD = styled.button`
@@ -32,11 +34,12 @@ const BUTTONS = styled.div`
 `;
 
 const FastFood = ({add, edit}) => {
+    AOS.init();
     const { addModal, setAddModal } = add;
     const { editModal, setEditModal } = edit;
     return (
         <>  
-            <div className='w-75 d-flex flex-column justify-content-between align-items-center position-absolute top-50 start-50 translate-middle'>
+            <div data-aos="fade-left" data-aos-delay="150" className='w-75 d-flex flex-column justify-content-between align-items-center position-absolute top-50 start-50 translate-middle'>
                 <div
                     style={{height: "50px"}} 
                     className='w-100 d-flex justify-content-between align-items-center px-2 border-bottom border-5 border-primary'
