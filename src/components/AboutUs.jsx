@@ -9,7 +9,7 @@ const AboutUs = () => {
         <div className='w-100 h-100 d-flex flex-column justify-content-center align-items-center'>
            <div className='w-100 h-auto d-flex justify-content-around align-items-center my-3'>
             <img data-aos="flip-left" src={food} style={{maxWidth: "350px", maxHeight: "350px", borderRadius: "50px"}} alt='food'/>
-            <div data-aos="zoom-in" style={{textAlign: "justify"}} className='w-50 h-auto d-flex flex-column justify-content-start align-items-start'>
+            <div data-aos="zoom-in" style={{textAlign: "justify"}} className='w-50 h-auto d-flex flex-column justify-content-start align-items-start rounded-4 bg-body-tertiary shadow-lg p-4'>
                 <h1 className='fw-bolder'>About Us</h1>
                 <p className='fs-6 fw-bold text-body'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                 <p>
