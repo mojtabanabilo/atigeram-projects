@@ -1,31 +1,52 @@
 import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import styled from 'styled-components';
+
+const INPUTS = styled.input`
+    padding: 0 10px;
+    border: solid 2px #cacaca;
+    border-top: none;
+    border-right: none;
+    &:focus{
+        outline: none;
+    }
+    &:nth-child(2){
+        margin-top: 15px;
+    }
+`;
 
 const ModalAddItem = ({add, data}) => {
     const { addModal, setAddModal } = add;
     const { array, setArray, object, setObject } = data;
+    const navigate = useNavigate();
+    console.log(object);
+    console.log(array);
+
     return (
         <Modal show={addModal}>
             <Modal.Header>
                 <Modal.Title>Add Item.</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            <InputGroup className="mb-3">
-                <input type="text" name="name" />
-                <input type="text" name="price" />
-                {/* <InputGroup.Text>name / price</InputGroup.Text>
-                <Form.Control aria-label="name" name='name' onChange={e => setObject([e.target.name] : e.target.value)}/>
-                <Form.Control aria-label="price" name='price' onChange={e => setObject([e.target.name] : e.target.value)}/> */}
+            <InputGroup className="mb-3" style={{display: 'flex', flexDirection: 'column'}}>
+                <INPUTS type="text" placeholder='name' name="name" onChange={e => setObject({...object, [e.target.name] : e.target.value, id: array.length + 1})}/>
+                <INPUTS type="text" placeholder='price' name="price" onChange={e => setObject({...object, [e.target.name] : e.target.value, id: array.length + 1})}/>
             </InputGroup>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={() => setAddModal(false)}>
+                <Button variant="secondary" onClick={async() => {
+                    await setAddModal(false)
+                    await setObject({})
+                }}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={() => setArray()}>
+                <Button variant="primary" onClick={async() => {
+                    await setArray([...array, object]);
+                    await setAddModal(false)
+                }}>
                     Save Changes
                 </Button>
             </Modal.Footer>

@@ -41,8 +41,8 @@ function App() {
       }
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/fastfood" element={<FastFood add={{addModal, setAddModal}} edit={{editModal, setEditModal}}/>}/>
-        <Route path="/drink" element={<Drink add={{addModal, setAddModal}} edit={{editModal, setEditModal}}/>}/>
+        <Route path="/fastfood" element={<FastFood data={{array, setArray, object, setObject}} add={{addModal, setAddModal}} edit={{editModal, setEditModal}}/>}/>
+        <Route path="/drink" element={<Drink data={{array, setArray, object, setObject}} add={{addModal, setAddModal}} edit={{editModal, setEditModal}}/>}/>
         <Route path="/aboutus" element={<AboutUs />}/>
       </Routes>
     </div>
