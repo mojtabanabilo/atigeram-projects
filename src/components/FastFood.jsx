@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Link } from 'react-router-dom';
 
 // styled-components
 const ADD = styled.button`
@@ -39,9 +40,10 @@ const FastFood = ({add, edit, data}) => {
     const { addModal, setAddModal } = add;
     const { editModal, setEditModal } = edit;
     const { array, setArray } = data;
+    console.log(array);
 
-    const handleDelete = (id) => {
-        const updatedItems = array.filter(item => item.id !== id);
+    const handleDelete = (name) => {
+        const updatedItems = array.filter(item => item.name !== name);
         setArray(updatedItems);
     };
     return (
@@ -70,9 +72,11 @@ const FastFood = ({add, edit, data}) => {
                             <p className='mb-0 w-50'>{items.price} $</p>
                             <div className='d-flex flex-column py-1'>
                                 <button className='btn-edit' onClick={() => setEditModal(true)}>
-                                    <i className="bi bi-pencil text-light"></i>
+                                    <Link to={`/modaledititem/${index + 1}`}>
+                                        <i className="bi bi-pencil text-light"></i>
+                                    </Link>
                                 </button>
-                                <button className='btn-remove' onClick={() => handleDelete(items.id)}>
+                                <button className='btn-remove' onClick={() => handleDelete(items.name)}>
                                     <i className="bi bi-x-circle text-light"></i>
                                 </button>
                             </div>

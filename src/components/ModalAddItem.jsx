@@ -20,8 +20,6 @@ const INPUTS = styled.input`
 const ModalAddItem = ({add, data}) => {
     const { addModal, setAddModal } = add;
     const { array, setArray, object, setObject } = data;
-    console.log(object);
-    console.log(array);
 
     return (
         <Modal show={addModal}>

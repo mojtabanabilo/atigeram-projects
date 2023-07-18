@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 import styled from 'styled-components';
+import { Link, useParams } from 'react-router-dom';
 
 const INPUTS = styled.input`
     padding: 0 10px;
@@ -20,6 +21,15 @@ const INPUTS = styled.input`
 const ModalEditItem = ({edit, data}) => {
     const { editModal, setEditModal } = edit;
     const { array, setArray, object, setObject } = data;
+    const [editItem, setEditItem] = useState(null);
+    const currentItem = useParams();
+    console.log(array[+currentItem.id - 1]);
+    console.log(editItem);
+    
+    useEffect(() => {
+        setEditItem(array[+currentItem.id - 1])
+    }, [])
+
     return (
         <Modal show={editModal}>
             <Modal.Header>
@@ -32,8 +42,13 @@ const ModalEditItem = ({edit, data}) => {
             </InputGroup>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={() => setEditModal(false)}>
-                    Close
+                <Button variant="secondary" onClick={() => {
+                    setEditModal(false);
+                    setEditItem(null);
+                }}>
+                    <Link to="/fastfood" style={{color: "#fff", textDecoration: "none"}}>
+                        Close
+                    </Link>
                 </Button>
                 <Button variant="primary">
                     Save Changes
