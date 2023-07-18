@@ -8,7 +8,7 @@ const Hamburger = ({menu, size}) => {
     const {width} = size;
 
     return (
-        <div className={`${width < 400 ? 'w-50' : 'w-25'} vh-100 bg-primary bg-gradient p-3 position-absolute top-0 end-0`}>
+        <div style={{zIndex: "100"}} className={`w-50 vh-100 bg-primary bg-gradient p-3 position-absolute top-0 end-0`}>
             <i className="bi bi-x fs-1 text-light"
                 style={{cursor: "pointer"}}
                 onClick={() => setShowMenu(false)}
