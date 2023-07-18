@@ -7,8 +7,8 @@ import FastFood from "./components/FastFood";
 import Drink from "./components/Drink";
 import AboutUs from "./components/AboutUs";
 import ModalAddItem from './components/ModalAddItem';
-import "./App.css";
 import ModalEditItem from "./components/ModalEditItem";
+import "./App.css";
 
 
 function App() {

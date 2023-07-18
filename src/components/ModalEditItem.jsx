@@ -1,21 +1,34 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import styled from 'styled-components';
 
-const ModalEditItem = ({edit}) => {
+const INPUTS = styled.input`
+    padding: 0 10px;
+    border: solid 2px #cacaca;
+    border-top: none;
+    border-right: none;
+    &:focus{
+        outline: none;
+    }
+    &:nth-child(2){
+        margin-top: 15px;
+    }
+`;
+
+const ModalEditItem = ({edit, data}) => {
     const { editModal, setEditModal } = edit;
+    const { array, setArray, object, setObject } = data;
     return (
         <Modal show={editModal}>
             <Modal.Header>
                 <Modal.Title>Edit Item.</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            <InputGroup className="mb-3">
-                <InputGroup.Text>name / price</InputGroup.Text>
-                <Form.Control aria-label="name" />
-                <Form.Control aria-label="price" />
+            <InputGroup className="mb-3 d-flex flex-column">
+                <INPUTS type="text" placeholder='name' name="name" onChange={e => setObject({...object, [e.target.name] : e.target.value, id: array.length + 1})}/>
+                <INPUTS type="text" placeholder='price' name="price" onChange={e => setObject({...object, [e.target.name] : e.target.value, id: array.length + 1})}/>
             </InputGroup>
             </Modal.Body>
             <Modal.Footer>

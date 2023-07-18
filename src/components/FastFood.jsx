@@ -38,7 +38,12 @@ const FastFood = ({add, edit, data}) => {
     AOS.init();
     const { addModal, setAddModal } = add;
     const { editModal, setEditModal } = edit;
-    const { array } = data;
+    const { array, setArray } = data;
+
+    const handleDelete = (id) => {
+        const updatedItems = array.filter(item => item.id !== id);
+        setArray(updatedItems);
+    };
     return (
         <>  
             <div data-aos="fade-left" data-aos-delay="150" className='w-75 d-flex flex-column justify-content-between align-items-center position-absolute top-50 start-50 translate-middle'>
@@ -56,7 +61,7 @@ const FastFood = ({add, edit, data}) => {
                 </div>
                 <div className='w-100 overflow-auto' style={{height: "350px"}}>
                     {
-                        array.map((items, index) => <BUTTONS 
+                        array && array.map((items, index) => <BUTTONS 
                             key={index} 
                             className='w-100 d-flex justify-content-between align-items-center px-2 border-bottom border-secondary border-1'
                         >
@@ -64,10 +69,10 @@ const FastFood = ({add, edit, data}) => {
                             <p className='mb-0 w-50'>{items.name}</p>
                             <p className='mb-0 w-50'>{items.price} $</p>
                             <div className='d-flex flex-column py-1'>
-                                <button className='btn-edit'>
+                                <button className='btn-edit' onClick={() => setEditModal(true)}>
                                     <i className="bi bi-pencil text-light"></i>
                                 </button>
-                                <button className='btn-remove'>
+                                <button className='btn-remove' onClick={() => handleDelete(items.id)}>
                                     <i className="bi bi-x-circle text-light"></i>
                                 </button>
                             </div>

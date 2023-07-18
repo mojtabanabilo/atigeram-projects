@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -21,7 +20,6 @@ const INPUTS = styled.input`
 const ModalAddItem = ({add, data}) => {
     const { addModal, setAddModal } = add;
     const { array, setArray, object, setObject } = data;
-    const navigate = useNavigate();
     console.log(object);
     console.log(array);
 
@@ -31,7 +29,7 @@ const ModalAddItem = ({add, data}) => {
                 <Modal.Title>Add Item.</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            <InputGroup className="mb-3" style={{display: 'flex', flexDirection: 'column'}}>
+            <InputGroup className="mb-3 d-flex flex-column">
                 <INPUTS type="text" placeholder='name' name="name" onChange={e => setObject({...object, [e.target.name] : e.target.value, id: array.length + 1})}/>
                 <INPUTS type="text" placeholder='price' name="price" onChange={e => setObject({...object, [e.target.name] : e.target.value, id: array.length + 1})}/>
             </InputGroup>

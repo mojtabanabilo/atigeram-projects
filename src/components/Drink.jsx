@@ -64,7 +64,7 @@ const Drink = ({add, edit, data}) => {
                             <p className='mb-0 w-50'>{items.name}</p>
                             <p className='mb-0 w-50'>{items.price} $</p>
                             <div className='d-flex flex-column py-1'>
-                                <button className='btn-edit'>
+                                <button className='btn-edit' onClick={() => setEditModal(true)}>
                                     <i className="bi bi-pencil text-light"></i>
                                 </button>
                                 <button className='btn-remove'>
