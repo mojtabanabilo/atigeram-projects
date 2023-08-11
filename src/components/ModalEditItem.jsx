@@ -37,8 +37,8 @@ const ModalEditItem = ({edit, data}) => {
             </Modal.Header>
             <Modal.Body>
             <InputGroup className="mb-3 d-flex flex-column">
-                <INPUTS type="text" placeholder='name' name="name" onChange={e => setObject({...object, [e.target.name] : e.target.value, id: array.length + 1})}/>
-                <INPUTS type="text" placeholder='price' name="price" onChange={e => setObject({...object, [e.target.name] : e.target.value, id: array.length + 1})}/>
+                <INPUTS type="text" placeholder='name' name="name" onChange={e => setEditItem({...editItem, [e.target.name] : e.target.value})}/>
+                <INPUTS type="text" placeholder='price' name="price" onChange={e => setEditItem({...editItem, [e.target.name] : e.target.value})}/>
             </InputGroup>
             </Modal.Body>
             <Modal.Footer>
@@ -50,8 +50,10 @@ const ModalEditItem = ({edit, data}) => {
                         Close
                     </Link>
                 </Button>
-                <Button variant="primary">
-                    Save Changes
+                <Button variant="primary" onClick={() => array[+currentItem.id - 1] = editItem}>
+                    <Link to="/fastfood" style={{color: "#fff", textDecoration: "none"}}>
+                        Save Change
+                    </Link>
                 </Button>
             </Modal.Footer>
         </Modal>

@@ -40,7 +40,6 @@ const FastFood = ({add, edit, data}) => {
     const { addModal, setAddModal } = add;
     const { editModal, setEditModal } = edit;
     const { array, setArray } = data;
-    console.log(array);
 
     const handleDelete = (name) => {
         const updatedItems = array.filter(item => item.name !== name);

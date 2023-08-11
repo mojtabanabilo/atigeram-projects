@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -38,7 +39,12 @@ const Drink = ({add, edit, data}) => {
     AOS.init();
     const { addModal, setAddModal } = add;
     const { editModal, setEditModal } = edit;
-    const { array } = data;
+    const { array, setArray } = data;
+
+    const handleDelete = (name) => {
+        const updatedItems = array.filter(item => item.name !== name);
+        setArray(updatedItems);
+    };
     return (
         <>  
             <div data-aos="fade-left" data-aos-delay="150" className='w-75 d-flex flex-column justify-content-between align-items-center position-absolute top-50 start-50 translate-middle'>
@@ -65,9 +71,11 @@ const Drink = ({add, edit, data}) => {
                             <p className='mb-0 w-50'>{items.price} $</p>
                             <div className='d-flex flex-column py-1'>
                                 <button className='btn-edit' onClick={() => setEditModal(true)}>
-                                    <i className="bi bi-pencil text-light"></i>
+                                    <Link to={`/modaledititem/${index + 1}`}>
+                                        <i className="bi bi-pencil text-light"></i>
+                                    </Link>
                                 </button>
-                                <button className='btn-remove'>
+                                <button className='btn-remove' onClick={() => handleDelete(items.name)}>
                                     <i className="bi bi-x-circle text-light"></i>
                                 </button>
                             </div>
