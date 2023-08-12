@@ -27,7 +27,7 @@ const Header = ({menu, size}) => {
     const {width} = size;
        
     return (
-        <Navbar bg="primary" data-bs-theme="dark" className='p-3 d-flex justify-content-between align-items-center'>
+        <Navbar bg="primary" data-bs-theme="dark" className='w-100 h-auto p-3 d-flex justify-content-between align-items-center'>
            <Navbar.Brand>dashboard</Navbar.Brand>
             {
                 width < 700 ? <i className="bi bi-list fs-2 text-light" 

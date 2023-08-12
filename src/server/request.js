@@ -7,5 +7,8 @@ export const get = async(url) => {
 
 export const post = async(url, data) => {
     await axios.post(url, data)
-    .then(res => console.log(res))
+    .then(res => {
+        // if(res.status === 200 || res.status > 200) console.log("done")
+        if(res.data) console.log("done")
+    })
 }

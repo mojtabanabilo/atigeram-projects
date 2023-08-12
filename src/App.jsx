@@ -28,7 +28,7 @@ function App() {
   }, []);
   
   return (
-    <div className="min-vw-100 min-vh-100">
+    <div className="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
       <Header menu={{showMenu, setShowMenu}} size={{width, setWidth}}/>
       {
         showMenu && <Hamburger menu={{showMenu, setShowMenu}} size={{width, setWidth}}/>
