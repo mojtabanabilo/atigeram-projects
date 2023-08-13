@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
 import { post } from '../server/request';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import 'aos/dist/aos.css';
 
 // styled-components
 const CONTAINER = styled.div`
@@ -55,6 +57,7 @@ const FastFood = ({add, edit, data}) => {
     const { addModal, setAddModal } = add;
     const { editModal, setEditModal } = edit;
     const { array, setArray } = data;
+    const [loading, setLoading] = useState(false);
 
     const handleDelete = (name) => {
         const updatedItems = array.filter(item => item.name !== name);
@@ -101,12 +104,37 @@ const FastFood = ({add, edit, data}) => {
                         )
                     }
                 </div>
-                {
-                    array.length > 0 && <button className='send-data' onClick={() => post('https://jsonplaceholder.typicode.com/posts', array)}>
-                        send
-                    </button>
-                }
+                
+        {
+            array.length > 0 && (
+                <button className='send-data' onClick={() => {
+                  setLoading(true); // تغییر وضعیت به true در هنگام شروع بارگذاری
+    
+                  post('https://jsonplaceholder.typicode.com/posts', array)
+                    .then(response => {
+                      setLoading(false); // تغییر وضعیت به false پس از اتمام بارگذاری
+                    })
+                    .catch(error => {
+                      setLoading(false); // تغییر وضعیت به false پس از اتمام بارگذاری (در صورت خطا)
+                    });
+                }}>
+                  {loading ? 'Loading...' : 'send'}
+                </button>
+            )
+        }
             </CONTAINER>
+            <ToastContainer 
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </>
     );
 };
