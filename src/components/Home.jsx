@@ -2,23 +2,55 @@ import React from 'react';
 import resturant from "../assets/logores2.png";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import styled from "styled-components";
+
+// styled-components
+const DIV = styled.div`
+    div{
+        img{
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+        }
+        span{
+            color: #000;
+            font-size: 2rem;
+            margin-left: 20px;
+        }
+    }
+    div{
+        p{
+            text-align: justify;
+        }
+    }
+    @media (max-width: 590px) {
+        div{
+            span{
+                font-size: 1.5rem;
+            }
+        }
+    }
+    @media (max-width: 410px) {
+        div{
+            img{
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+`;
 
 const Home = () => {
     AOS.init();
     return (
-        <div className='w-100 h-100 d-flex flex-column justify-content-center align-items-center'>
+        <DIV className='w-100 h-100 d-flex flex-column justify-content-center align-items-center'>
             <div 
-                className='my-4 bg-white mt-5 rounded-2 w-75 shadow d-flex flex-row justify-content-start align-items-center p-4'
+                className='x my-4 bg-white mt-5 rounded-2 w-75 shadow d-flex flex-row justify-content-start align-items-center p-4'
                 data-aos="fade-left"
                 data-aos-delay="150"
             >
-                <img 
-                    src={resturant} 
-                    alt="logo"
-                    className='rounded-2'
-                    style={{width: "100px", height: "100px"}}
-                />
-                <span className='text-dark-emphasis mx-3 align-middle fw-bolder fs-3'>Resturant</span>
+                <img src={resturant} alt="logo"/>
+                <span>Resturant</span>
             </div>
             <div 
                 style={{textAlign: "justify"}} 
@@ -26,15 +58,11 @@ const Home = () => {
                 data-aos="fade-right"
                 data-aos-delay="250"
             >
-                <p className='lh-sm'>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias, ab placeat est 
-                    molestiae fugiat perferendis sit non assumenda facere accusamus iusto dolorem 
-                    architecto nesciunt consectetur obcaecati qui! Ab, molestiae magni. 
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt officia molestiae, ex minima illum odit, consectetur rerum dolorum incidunt eius 
-                    dolor maxime provident obcaecati architecto ab fugiat quam, voluptatibus expedita.
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, deleniti id facilis, et consequuntur ducimus maxime, dolor distinctio perspiciatis minima quisquam. Qui ab unde iusto repudiandae aperiam sunt beatae reiciendis.
                 </p>
             </div>
-        </div>
+        </DIV>
     );
 };
 

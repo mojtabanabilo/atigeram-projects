@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AOS from 'aos';
 import { Link } from 'react-router-dom';
 import { post } from '../server/request';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'aos/dist/aos.css';
 
@@ -11,9 +11,6 @@ import 'aos/dist/aos.css';
 const CONTAINER = styled.div`
     height: fit-content;
     .add-btn{
-        position: absolute;
-        left: 49%;
-        top: -30%;
         width: 35px;
         height: 35px;
         background: #00ac00;
@@ -48,6 +45,7 @@ const CONTAINER = styled.div`
         line-height: 0;
         cursor: pointer;
         color: #fff;
+        padding: 5px;
     }
 `;
 
@@ -78,14 +76,14 @@ const FastFood = ({add, edit, data}) => {
                         <i className="bi bi-plus-circle-dotted fs-5 text-light"></i>
                     </button>
                 </div>
-                <div className='w-100 overflow-auto d-flex flex-column justify-content-start align-items-center' style={{height: "350px"}}>
+                <div className='w-100 overflow-auto d-flex flex-column justify-content-start align-items-start' style={{height: "350px"}}>
                     {
                         array.length === 0 && <h4 style={{marginTop: "20px" ,textAlign: "center"}}>please add an item for list.</h4>
                     }
                     {
                         array && array.map((items, index) => <div 
                             key={index} 
-                            className='edit-btn w-100 d-flex justify-content-between align-items-center px-2 border-bottom border-secondary border-1'
+                            className='edit-btn w-75 d-flex justify-content-between align-items-center px-2 border-bottom border-secondary border-1'
                         >
                                 <p className='mb-0 w-50'>{index + 1}</p>
                                 <p className='mb-0 w-50'>{items.name}</p>
@@ -108,21 +106,16 @@ const FastFood = ({add, edit, data}) => {
         {
             array.length > 0 && (
                 <button className='send-data' onClick={() => {
-                  setLoading(true); // تغییر وضعیت به true در هنگام شروع بارگذاری
-    
+                  setLoading(true);
                   post('https://jsonplaceholder.typicode.com/posts', array)
-                    .then(response => {
-                      setLoading(false); // تغییر وضعیت به false پس از اتمام بارگذاری
-                    })
-                    .catch(error => {
-                      setLoading(false); // تغییر وضعیت به false پس از اتمام بارگذاری (در صورت خطا)
-                    });
+                    .then(() => setLoading(false))
+                    .catch(() => setLoading(false));
                 }}>
-                  {loading ? 'Loading...' : 'send'}
+                  {loading ? 'Loading...' : 'Send'}
                 </button>
             )
         }
-            </CONTAINER>
+        </CONTAINER>
             <ToastContainer 
                 position="top-center"
                 autoClose={2000}

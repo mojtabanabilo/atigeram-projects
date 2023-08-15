@@ -36,9 +36,6 @@ function App() {
       {
         addModal && <ModalAddItem add={{addModal, setAddModal}} data={{array, setArray, object, setObject}}/>
       }
-      {/* {
-        editModal && <ModalEditItem edit={{editModal, setEditModal}} data={{array, setArray, object, setObject}}/>
-      } */}
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/fastfood" element={<FastFood data={{array, setArray, object, setObject}} add={{addModal, setAddModal}} edit={{editModal, setEditModal}}/>}/>

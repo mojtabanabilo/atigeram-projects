@@ -2,13 +2,26 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
+import styled from 'styled-components';
+
+// styled-components
+const DIV = styled.div`
+    @keyframes myAnim {
+        0% {
+            transform: translateX(100px);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+`;
 
 const Hamburger = ({menu, size}) => {
-    const {setShowMenu} = menu;
+    const {setShowMenu, showMenu} = menu;
     const {width} = size;
 
     return (
-        <div style={{zIndex: "100"}} className={`${width < 640 ? "w-50" : "w-25"} vh-100 bg-primary bg-gradient p-3 position-fixed top-0 end-0`}>
+        <DIV style={{zIndex: "100", animation: showMenu && 'myAnim 0.3s linear 0s 1 normal forwards'}} className={`${width < 640 ? "w-50" : "w-25"} vh-100 bg-primary bg-gradient p-3 position-fixed top-0 end-0`}>
             <i className="bi bi-x fs-1 text-light"
                 style={{cursor: "pointer"}}
                 onClick={() => setShowMenu(false)}
@@ -27,7 +40,7 @@ const Hamburger = ({menu, size}) => {
                     <Link to="/aboutus" style={{textDecoration: "none", color: "#fff"}}>about us</Link>
                 </li>
             </ul>
-        </div>
+        </DIV>
     );
 };
 
