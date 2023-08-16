@@ -40,7 +40,7 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/fastfood" element={<FastFood data={{array, setArray, object, setObject}} add={{addModal, setAddModal}} edit={{editModal, setEditModal}}/>}/>
         <Route path="/drink" element={<Drink data={{array, setArray, object, setObject}} add={{addModal, setAddModal}} edit={{editModal, setEditModal}}/>}/>
-        <Route path="/aboutus" element={<AboutUs />}/>
+        <Route path="/aboutus" element={<AboutUs size={{width, setWidth}}/>}/>
         <Route path="/modaledititem/:id" element={<ModalEditItem edit={{editModal, setEditModal}} data={{array, setArray, object, setObject}}/>}/>
       </Routes>
     </div>
